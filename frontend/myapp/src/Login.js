@@ -53,7 +53,11 @@ const Login = (props) => {
     return (
         <div className="login-container">
             <div className="login-box">
+            <p className={`par ${logged ? 'par-logged-in' : ''}`}>
+  {logged ? 'You are logged in' : 'You are not logged in, please login or register'}
+</p>
                 {logged ?
+
                     (<button className="logout-button" onClick={() => doLogout()}>Logout</button>) : // כפתור הלוגאוט שימוש ב פונקציה שמבצעת דיליט לטוקן של המשתמש ומעדכנת את הסטייט של המשתנה של הלוגין לפולס (שקר) ומעדכנת את הסטייט של הפרופס של הלוגין לפולס (שקר)
                     (<div>
                         <div className="label">User Name:</div>

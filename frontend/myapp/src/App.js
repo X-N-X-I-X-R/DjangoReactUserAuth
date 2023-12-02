@@ -19,9 +19,10 @@ function App() {
   return (
     <div className="App">
       <div>
-        {logged ? ` ${userEmail}` : " you are not logged in , please login "}
-        <button onClick={handleShowLogin}>Login</button>
+      <button onClick={handleShowLogin}>Login</button>
         <button onClick={handleShowRegister}>Register</button>
+        {logged ? ` ${userEmail}` : ""}
+   
         {showLogin ? (
           <Login logged={setlogged} setEmail={setEmail} />
         ) : (
