@@ -1,11 +1,11 @@
 import datetime
 from pathlib import Path
-from decouple import config
+from .keyenv  import SECRET_KEYs
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = (SECRET_KEYs)
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']

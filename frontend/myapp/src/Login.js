@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './Logincss.css'
+import RegistrationForm from './RegistrationForm';
+
 
 // שימוש ב פרופס כדי לקבל את הפרופס של הלוגין והאימייל של המשתמש שמתחבר ולעדכן אותם בזמן הריצה של הקוד
 // פרופס הוא כמו משתנה שמקבלים מהקומפוננטה האב ומעדכנים אותו בקומפוננטה הבת ומעדכנים אותו בקומפוננטה האב וכך הלאה 
@@ -50,10 +52,36 @@ const Login = (props) => {
         props.logged(logged) 
         props.setEmail("Thanks , \nsee you Tommorow ","") // עדכון הפרופס של האימייל של המשתמש שמתחבר לפולס (שקר)
     }
+
+    const [userEmail, setEmail] = useState('');
+    const [showLogin, setShowLogin] = useState(true);
+
+    const handleShowLogin = () => {
+        setShowLogin(true);
+      };
+    
+      const handleShowRegister = () => {
+        setShowLogin(false);
+      };
+    
     return (
+        <div>
+        <button onClick={handleShowLogin}>Login</button>
+        <button onClick={handleShowRegister}>Register</button>
+        {logged ? ` ${userEmail}` : ""}
+        {showLogin ? (
+          <Login logged={setlogged} setEmail={setEmail} />
+        ) : (
+          <RegistrationForm logged={setlogged} setEmail={setEmail} />
+        )}
+   
         <div className="login-container">
             <div className="login-box">
+            <p className={`par ${logged ? 'par-logged-in' : ''}`}>
+  {logged ? 'You are logged in' : 'You are not logged in, please login or register'}
+</p>
                 {logged ?
+
                     (<button className="logout-button" onClick={() => doLogout()}>Logout</button>) : // כפתור הלוגאוט שימוש ב פונקציה שמבצעת דיליט לטוקן של המשתמש ומעדכנת את הסטייט של המשתנה של הלוגין לפולס (שקר) ומעדכנת את הסטייט של הפרופס של הלוגין לפולס (שקר)
                     (<div>
                         <div className="label">User Name:</div>
@@ -67,6 +95,7 @@ const Login = (props) => {
                     // שימוש באונצ׳יינג׳ כדי לעדכן את הסטייט של המשתנים שלנו בזמן הריצה של הקוד
                 }
             </div>
+        </div>
         </div>
     )
 }
