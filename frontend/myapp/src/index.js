@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter, Route ,Routes} from "react-router-dom"
+import Autentication from './Components/Autentication';
 // שימוש ב ריאקט ראוטר כדי להציג את הקומפוננטה של האפ שלנו בדף האינדקס שלנו 
 
 // BrowserRouter ===> זהו רכיב ב-React Router,
@@ -30,7 +31,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element = {<App/>} />
+        <Route path="/" element={<Autentication />} />
+        <Route path="/app" element={<App />} /> {/* Add this line */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

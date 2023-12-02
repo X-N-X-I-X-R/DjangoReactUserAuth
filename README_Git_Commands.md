@@ -46,3 +46,7 @@ This guide provides a list of common Git commands along with brief explanations 
 ## Help and Additional Information:
 14. `git status`  
     - Provides information on the current status of the repository, including uncommitted changes and branch status.
+
+
+# delete
+git branch -d feature-branch  # Or git branch -D feature-branch if needed
