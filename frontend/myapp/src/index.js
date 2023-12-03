@@ -2,7 +2,7 @@ import React from 'react';
 // שימוש ב ריאקט דום כדי להציג את הקומפוננטה של האפ שלנו בדף האינדקס שלנו 
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { BrowserRouter, Route ,Routes} from "react-router-dom"
+import { BrowserRouter, Link, Route ,Routes} from "react-router-dom"
 import Autentication from './Components/Autentication';
 // שימוש ב ריאקט ראוטר כדי להציג את הקומפוננטה של האפ שלנו בדף האינדקס שלנו 
 
@@ -32,7 +32,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Autentication />} />
-        <Route path="/app" element={<App />} /> {/* Add this line */}
+        <Route path="/app" element={<App />} /> 
+        <Route path="/logout"  element={<div>You are logout please login <Link to="/">Go to Login</Link></div>} />
+
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

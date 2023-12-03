@@ -1,107 +1,64 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Registercss.css'; // Import your CSS file
+import './Registercss.css';
 import Homepage from './Components/Homepage';
 
+const RegistrationForm = (props) => {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [registered, setRegistered] = useState(false);
+  const MY_SERVER = 'http://localhost:8000/register/';
 
-const RegistrationForm = ({ logged, setUsername }) => { // Accept setUsername prop
-  const [registered, setRegistered] = useState(false); // Define registered
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    email: '',
-    first_name: '',
-    last_name: '',
-  });
+  const doRegistration = () => {
+    axios({
+      method: 'post',
+      url: MY_SERVER,
+      data: {
+        username: userName,
+        password: password,
+        email: email,
+        first_name: firstName,
+        last_name: lastName,
+      },
+      withCredentials: true,
+    })
+      .then((response) => {
+        console.log(response.data); // Response from the server
+        const token = response.data.access; // Get the authentication token
+        sessionStorage.setItem('token', token); // Store the token in sessionStorage
+        setRegistered(true);
+        props.logged(true);
+        props.setUsername(userName);
+      })
+      .catch((error) => {
+        console.error(error); // Handle any registration errors here
+      });
+  };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/register/', formData);
-      console.log(response.data);
-      logged(true);
-      setUsername(formData.username); // Set the username in the parent component
-    } catch (error) {
-      console.error('Registration failed', error);
-      // Handle error (display error message, etc.)
-    }
-  };
   return (
-    <div className="register-container">
-      {registered ? (
-        <Homepage />
-      ) : (
-        <form className="register-box" onSubmit={handleSubmit}>
-          <label className="label">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="input-field"
-            />
-          </label>
-          <br />
-
-          <label className="label">
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="input-field"
-            />
-          </label>
-          <br />
-
-          <label className="label">
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="input-field"
-            />
-          </label>
-          <br />
-
-          <label className="label">
-            First Name:
-            <input
-              type="text"
-              name="first_name"
-              value={formData.first_name}
-              onChange={handleChange}
-              className="input-field"
-            />
-          </label>
-          <br />
-
-          <label className="label">
-            Last Name:
-            <input
-              type="text"
-              name="last_name"
-              value={formData.last_name}
-              onChange={handleChange}
-              className="input-field"
-            />
-          </label>
-          <br />
-
-          {/* Add more fields as needed */}
-          
-          <button type="submit" className="submit-button">
-            Register
-          </button>
-        </form>
-      )}
+    <div className="registration-container">
+      <div className="registration-box">
+        {registered ? (
+          <Homepage></Homepage>
+        ) : (
+          <div>
+            <div className="label">User Name:</div>
+            <input onChange={(evt) => setUserName(evt.target.value)} />
+            <div className="label">Password:</div>
+            <input type="password" onChange={(evt) => setPassword(evt.target.value)} />
+            <div className="label">Email:</div>
+            <input onChange={(evt) => setEmail(evt.target.value)} />
+            <div className="label">First Name:</div>
+            <input onChange={(evt) => setFirstName(evt.target.value)} />
+            <div className="label">Last Name:</div>
+            <input onChange={(evt) => setLastName(evt.target.value)} />
+            <button onClick={() => doRegistration()}>Register</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

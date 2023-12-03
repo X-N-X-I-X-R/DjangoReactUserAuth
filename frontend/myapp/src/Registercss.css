@@ -1,26 +1,32 @@
 /* Overall layout */
-.register-container {
+.registration-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #f0f2f5;
+}
+.par {
+  font-size: 20px;
+  color: #fc0000;
+  margin-bottom: 5px;
+}
+.par-registered {
+  color: green;
 }
 
 /* Styling the registration box */
-.register-box {
+.registration-box {
   padding: 20px;
   border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  width: 350px;
-  text-align: center;
-  margin: 20px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
 }
 
 /* Styling for input fields */
-.input-field {
+.registration-box input {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -28,40 +34,34 @@
   border-radius: 4px;
 }
 
-/* Styling for labels */
-.label {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 8px;
-}
-
-/* Styling for the submit button */
-.submit-button {
+/* Styling for buttons */
+.registration-box button {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: none;
   border-radius: 4px;
   background-color: #007bff;
-  color: #fff;
+  color: white;
   cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
-.submit-button:hover {
+.registration-box button:hover {
   background-color: #0056b3;
 }
 
-/* Styling for error messages */
-.error-message {
-  color: #dc3545;
-  font-size: 14px;
-  margin-top: 5px;
+/* Additional styling for logout button */
+.logout-button {
+  background-color: #dc3545;
 }
 
-/* Styling for success message */
-.success-message {
-  color: green;
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+/* Labels for inputs */
+.label {
   font-size: 14px;
-  margin-top: 5px;
+  color: #555;
+  margin-bottom: 5px;
 }

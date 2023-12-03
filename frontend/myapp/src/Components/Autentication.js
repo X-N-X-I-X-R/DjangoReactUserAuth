@@ -24,8 +24,7 @@ const Authentication = (props) => {
         sessionStorage.setItem('token', ''); // Clear the token from session storage
         setLogged(false); // Set logged state to false
         setUsername(''); // Clear the username
-        navigate('/'); // Navigate to the home page
-        
+        navigate('/logout'); // Navigate to the home page
     };
 
     return (
